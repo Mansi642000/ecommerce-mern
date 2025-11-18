@@ -1,12 +1,12 @@
 // src/config.js
-// src/config.js
 
-// 🔥 Your Render backend URL
-const PROD = "https://ecommerce-mern-59vj.onrender.com";
-// 🔥 Local development URL
+// Backend deployed URL (must include /api)
+const PROD = "https://ecommerce-mern-59vj.onrender.com/api";
+
+// Local development URL
 const DEV = "http://localhost:5000/api";
 
-// 🔥 Auto switch based on environment
+// Auto-select environment
 export const API_URL = import.meta.env.PROD ? PROD : DEV;
 
 // Endpoints
