@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { SIGNUP_URL } from "../config.js";
 import { useNavigate } from "react-router-dom";
+import React from "react";
 
 function Signup() {
   const navigate = useNavigate();

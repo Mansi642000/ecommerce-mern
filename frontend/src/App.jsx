@@ -1,7 +1,7 @@
 // src/App.jsx
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
-
+import React from "react";
 // Pages
 import Home from "./pages/Home.jsx";
 import Products from "./pages/Products.jsx";

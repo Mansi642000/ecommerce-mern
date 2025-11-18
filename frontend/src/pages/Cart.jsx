@@ -7,6 +7,7 @@ import {
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
+import React from "react";
 
 const stripePromise = loadStripe("pk_test_YourStripePublicKeyHere"); // Replace with your Stripe public key
 

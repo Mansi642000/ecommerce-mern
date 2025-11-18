@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import ProductCard from "../components/productcard.jsx"; // ensure the file name matches exactly
 import { API_URL } from "../config.js";
+import React from "react";
 
 function Products() {
   const [products, setProducts] = useState([]);

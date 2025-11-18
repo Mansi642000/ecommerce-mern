@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { API_URL } from "../config.js";
+import React from "react";
 
 function ProductDetails() {
   const { id } = useParams(); // get product id from URL

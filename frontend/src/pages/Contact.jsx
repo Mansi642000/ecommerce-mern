@@ -2,6 +2,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { API_URL } from "../config.js";
+import React from "react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
