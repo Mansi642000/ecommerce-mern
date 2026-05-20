@@ -59,12 +59,18 @@ app.post("/api/create-payment-intent", async (req, res) => {
     const { amount, cartItems, customerEmail } = req.body;
 
 try {
+    const totalItems = (cartItems || []).reduce(
+        (sum, item) => sum + Number(item.quantity || 0),
+        0
+    );
+
     const paymentIntent = await stripe.paymentIntents.create({
     amount,
     currency: "usd",
     receipt_email: customerEmail,
     metadata: {
-        cart: JSON.stringify(cartItems || []),
+        item_count: String(totalItems),
+        order_total: String(amount),
     },
     });
 

@@ -16,7 +16,6 @@ import Orders from "./pages/Orders.jsx";
 
 // Components
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
-import StripeProviderWrapper from "./stripe/StripeProviderWrapper.jsx";
 
 // Routing
 import { Routes, Route } from "react-router-dom";
@@ -61,9 +60,7 @@ function App() {
             path="/checkout"
             element={
               <ProtectedRoute>
-                <StripeProviderWrapper>
                   <Checkout />
-                </StripeProviderWrapper>
               </ProtectedRoute>
             }
           />

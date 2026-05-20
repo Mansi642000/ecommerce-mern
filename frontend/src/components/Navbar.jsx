@@ -1,19 +1,28 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import React from "react";
 
 function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [user, setUser] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     const token = localStorage.getItem("token");
-    if (token && storedUser) {
-      setUser(JSON.parse(storedUser));
+
+    if (!token || !storedUser) {
+      setUser(null);
+      return;
     }
-  }, []);
+
+    try{
+      setUser(JSON.parse(storedUser));
+    }catch {
+      setUser(null);
+    }
+  }, [location.pathname]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
