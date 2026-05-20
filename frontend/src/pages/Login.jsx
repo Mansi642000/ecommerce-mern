@@ -17,8 +17,8 @@ function Login() {
 
     try {
       const res = await axios.post(LOGIN_URL, { email, password });
-      localStorage.setItem("token", res.data.token); // store JWT token
-      alert("Login successful!");
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));      alert("Login successful!");
       navigate("/"); // redirect to Home
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");

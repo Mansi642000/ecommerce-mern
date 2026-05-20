@@ -1,24 +1,46 @@
-import express from 'express';
-import Order from '../models/Order.js';
+import express from "express";
+import Order from "../models/Order.js";
+import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-// Place a new order
-router.post('/', async (req, res) => {
+router.post("/", protect, async (req, res) => {
   const { items, total, customerName, email, address } = req.body;
-  const newOrder = new Order({ items, total, customerName, email, address });
+
+  if (!items?.length || !total || !customerName || !email || !address) {
+    return res.status(400).json({ message: "Missing required order details" });
+  }
+
   try {
+    const newOrder = new Order({
+      user: req.user.id,
+      items,
+      total,
+      customerName,
+      email,
+      address,
+      paymentStatus: "paid",
+    });
+
     const savedOrder = await newOrder.save();
-    res.status(201).json(savedOrder);
+    return res.status(201).json(savedOrder);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    return res.status(400).json({ message: err.message });
   }
 });
 
-// Get all orders (for admin)
-router.get('/', async (req, res) => {
+router.get("/my", protect, async (req, res) => {
   try {
-    const orders = await Order.find();
+    const orders = await Order.find({ user: req.user.id }).sort({ createdAt: -1 });
+    return res.json(orders);
+  } catch (err) {
+      return res.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/", async (req, res) => {
+  try {
+    const orders = await Order.find().sort({ createdAt: -1 });
     res.json(orders);
   } catch (err) {
     res.status(500).json({ message: err.message });
