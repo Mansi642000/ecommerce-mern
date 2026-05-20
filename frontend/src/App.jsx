@@ -12,7 +12,7 @@ import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
-import Order from "./pages/Orders.jsx";
+import Orders from "./pages/Orders.jsx";
 
 // Components
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
